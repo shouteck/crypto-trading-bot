@@ -21,7 +21,6 @@ public class TickerScheduler {
 
     @Scheduled(fixedRate = 10000) // Every 10 seconds
     public void fetchTickersPeriodically() {
-
         List<Ticker> binanceTickers = binanceTickerService.fetchTickers();
         List<Ticker> huobiTickers = huobiTickerService.fetchTickers();
 
@@ -35,6 +34,5 @@ public class TickerScheduler {
         });
 
         System.out.println("Saved tickers to H2 database");
-
     }
 }
