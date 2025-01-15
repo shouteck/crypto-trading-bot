@@ -20,6 +20,8 @@ public class HuobiTickerService {
         JsonNode response = restTemplate.getForObject(HUOBI_API_URL, JsonNode.class);
         if (response != null && response.has("data")) {
             for (JsonNode node : response.get("data")) {
+                if (!node.get("symbol").asText().equals("btcusdt") && !node.get("symbol").asText().equals("ethusdt"))
+                    continue;
                 tickers.add(new Ticker(
                         node.get("symbol").asText(),
                         new BigDecimal(node.get("bid").asText()),

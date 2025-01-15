@@ -20,6 +20,8 @@ public class BinanceTickerService {
         JsonNode response = restTemplate.getForObject(BINANCE_API_URL, JsonNode.class);
         if (response != null && response.isArray()) {
             for (JsonNode node : response) {
+                if (!node.get("symbol").asText().equals("BTCUSDT") && !node.get("symbol").asText().equals("ETHUSDT"))
+                    continue;
                 tickers.add(new Ticker(
                         node.get("symbol").asText(),
                         new BigDecimal(node.get("bidPrice").asText()),
