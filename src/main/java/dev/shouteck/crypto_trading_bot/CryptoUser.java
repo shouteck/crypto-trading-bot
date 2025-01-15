@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 import java.math.BigDecimal;
 
 @Entity
-public class User {
+public class CryptoUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,9 +21,9 @@ public class User {
     @Column(nullable = false)
     private BigDecimal walletBalance;
 
-    public User() {}
+    public CryptoUser() {}
 
-    public User(String username, BigDecimal walletBalance) {
+    public CryptoUser(String username, BigDecimal walletBalance) {
         this.username = username;
         this.walletBalance = walletBalance;
     }

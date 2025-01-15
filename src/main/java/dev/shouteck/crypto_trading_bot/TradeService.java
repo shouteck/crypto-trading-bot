@@ -18,7 +18,7 @@ public class TradeService {
     }
 
     public String trade(String username, String symbol, BigDecimal quantity, boolean isBuyOrder) {
-        User user = userRepository.findByUsername(username);
+        CryptoUser user = userRepository.findByUsername(username);
         if (user == null) {
             throw new IllegalArgumentException("User not found");
         }

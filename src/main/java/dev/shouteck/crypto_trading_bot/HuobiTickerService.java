@@ -22,13 +22,11 @@ public class HuobiTickerService {
             for (JsonNode node : response.get("data")) {
                 if (!node.get("symbol").asText().equals("btcusdt") && !node.get("symbol").asText().equals("ethusdt"))
                     continue;
-                tickers.add(new Ticker(
-                        node.get("symbol").asText(),
+                tickers.add(new Ticker(node.get("symbol").asText(),
                         new BigDecimal(node.get("bid").asText()),
                         new BigDecimal(node.get("bidSize").asText()),
                         new BigDecimal(node.get("ask").asText()),
-                        new BigDecimal(node.get("askSize").asText())
-                ));
+                        new BigDecimal(node.get("askSize").asText())));
             }
         }
 

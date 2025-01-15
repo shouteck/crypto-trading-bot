@@ -22,13 +22,11 @@ public class BinanceTickerService {
             for (JsonNode node : response) {
                 if (!node.get("symbol").asText().equals("BTCUSDT") && !node.get("symbol").asText().equals("ETHUSDT"))
                     continue;
-                tickers.add(new Ticker(
-                        node.get("symbol").asText(),
+                tickers.add(new Ticker(node.get("symbol").asText(),
                         new BigDecimal(node.get("bidPrice").asText()),
                         new BigDecimal(node.get("bidQty").asText()),
                         new BigDecimal(node.get("askPrice").asText()),
-                        new BigDecimal(node.get("askQty").asText())
-                ));
+                        new BigDecimal(node.get("askQty").asText())));
             }
         }
 

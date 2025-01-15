@@ -20,7 +20,7 @@ public class Trade {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private CryptoUser cryptoUser;
 
     @Column(nullable = false)
     private String symbol;
@@ -35,17 +35,17 @@ public class Trade {
     private boolean isBuyOrder; // true = buy, false = sell
 
     @Column(nullable = false)
-    private LocalDateTime timestamp;
+    private LocalDateTime tradeTimestamp;
 
     public Trade() {}
 
-    public Trade(User user, String symbol, BigDecimal quantity, BigDecimal price, boolean isBuyOrder) {
-        this.user = user;
+    public Trade(CryptoUser cryptoUser, String symbol, BigDecimal quantity, BigDecimal price, boolean isBuyOrder) {
+        this.cryptoUser = cryptoUser;
         this.symbol = symbol;
         this.quantity = quantity;
         this.price = price;
         this.isBuyOrder = isBuyOrder;
-        this.timestamp = LocalDateTime.now();
+        this.tradeTimestamp = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -56,12 +56,12 @@ public class Trade {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public CryptoUser getCryptoUser() {
+        return cryptoUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCryptoUser(CryptoUser cryptoUser) {
+        this.cryptoUser = cryptoUser;
     }
 
     public String getSymbol() {
@@ -96,11 +96,11 @@ public class Trade {
         isBuyOrder = buyOrder;
     }
 
-    public LocalDateTime getTimestamp() {
-        return timestamp;
+    public LocalDateTime getTradeTimestamp() {
+        return tradeTimestamp;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
+    public void setTradeTimestamp(LocalDateTime tradeTimestamp) {
+        this.tradeTimestamp = tradeTimestamp;
     }
 }
