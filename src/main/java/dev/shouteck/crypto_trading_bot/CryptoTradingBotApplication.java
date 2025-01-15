@@ -5,6 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class CryptoTradingBotApplication {
 
@@ -13,9 +15,11 @@ public class CryptoTradingBotApplication {
 	}
 
 	@Bean
-	CommandLineRunner runner(BinanceRestClient client) {
+	CommandLineRunner runner(TickerAggregatorService tickerAggregatorService) {
 		return args -> {
 			System.out.println("Testing");
+			List<Ticker> tickers = tickerAggregatorService.fetchCombinedTickers();
+			System.out.println(tickers.get(0));
 		};
 	}
 
