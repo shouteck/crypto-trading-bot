@@ -15,8 +15,7 @@ public class CryptoTradingBotApplication {
 	@Bean
 	CommandLineRunner runner(BinanceRestClient client) {
 		return args -> {
-			Ticker ticker = client.findBySymbol("BTCUSDT");
-			System.out.println(ticker);
+			System.out.println("Testing");
 		};
 	}
 

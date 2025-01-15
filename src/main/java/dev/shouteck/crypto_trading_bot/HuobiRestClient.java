@@ -4,13 +4,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
 @Component
-public class BinanceRestClient {
+public class HuobiRestClient {
 
     private final RestClient restClient;
 
-    public BinanceRestClient(RestClient.Builder builder) {
+    public HuobiRestClient(RestClient.Builder builder) {
         this.restClient = builder
-                .baseUrl("https://api.binance.com/api/v3/ticker/bookTicker")
+                .baseUrl("https://api.huobi.pro/market/tickers")
                 .build();
     }
 
