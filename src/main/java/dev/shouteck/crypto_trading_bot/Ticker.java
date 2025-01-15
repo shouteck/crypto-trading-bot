@@ -1,10 +1,8 @@
 package dev.shouteck.crypto_trading_bot;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import java.math.BigDecimal;
 
-@Entity
 public class Ticker {
 
     @Id
