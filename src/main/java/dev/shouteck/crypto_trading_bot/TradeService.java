@@ -33,8 +33,14 @@ public class TradeService {
         BigDecimal price = isBuyOrder ? aggregatedPrice.getAskPrice() : aggregatedPrice.getBidPrice();
         BigDecimal totalCost = price.multiply(quantity);
 
-        if (isBuyOrder && user.getWalletBalance().compareTo(totalCost) < 0) {
-            throw new IllegalArgumentException("Insufficient balance");
+        if (isBuyOrder) {
+            if (quantity.compareTo(aggregatedPrice.getAskQuantity()) > 0) {
+                return "Cannot buy more than the available quantity at the best ask price";
+            }
+            BigDecimal totalPrice = aggregatedPrice.getAskPrice().multiply(quantity);
+            if (totalPrice.compareTo(user.getWalletBalance()) > 0) {
+                return "Insufficient funds for the buy order";
+            }
         }
 
         if (isBuyOrder) {
