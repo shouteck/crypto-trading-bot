@@ -1,6 +1,29 @@
 # Crypto Trading API
 
-### 1. Create a User
+### 1. Get Aggregated Prices
+
+- **URL**: `/api/aggregated-tickers`
+- **Method**: `GET`
+- **Response Body**:
+    ```json
+    [
+        {
+            "symbol": "BTCUSDT",
+            "bidPrice": 99405.05,
+            "bidQuantity": 0.90554,
+            "askPrice": 99410.01,
+            "askQuantity": 1.13483
+        },
+        {
+            "symbol": "ETHUSDT",
+            "bidPrice": 3369.39,
+            "bidQuantity": 86.283,
+            "askPrice": 3369.74,
+            "askQuantity": 1.9235
+        }
+    ]
+
+### 2. Create a User
 
 - **URL**: `/api/users`
 - **Method**: `POST`
@@ -13,7 +36,7 @@
     ```json
     User created.
 
-### 2. Check User Wallet
+### 3. Check User Wallet
 
 - **URL**: `/api/wallet/balance?username=john_doe`
 - **Method**: `GET`
@@ -33,7 +56,7 @@
       ]
     }
 
-### 3. Adjust Cash Balance
+### 4. Adjust Cash Balance
 
 - **URL**: `/api/wallet/adjust`
 - **Method**: `POST`
@@ -47,7 +70,7 @@
     ```json
     Wallet balance adjusted successfully.
 
-### 4. Check User Trading History
+### 5. Check User Trading History
 
 - **URL**: `/api/trade/history?username=john_doe`
 - **Method**: `GET`
@@ -70,7 +93,7 @@
         }
     ]
 
-### 5. Buy Trade
+### 6. Buy Trade
 
 - **URL**: `/api/trade/execute`
 - **Method**: `POST`
@@ -86,7 +109,7 @@
     ```json
     Trade executed successfully.
 
-### 6. Sell Trade
+### 7. Sell Trade
 
 - **URL**: `/api/trade/execute`
 - **Method**: `POST`
