@@ -4,7 +4,9 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TradeService {
@@ -23,6 +25,20 @@ public class TradeService {
         this.aggregatedTickerService = aggregatedTickerService;
         this.walletItemRepository = walletItemRepository;
         this.walletRepository = walletRepository;
+    }
+
+    public List<TradeHistoryDto> getTradeHistoryForUser(CryptoUser user) {
+        List<Trade> trades = tradeRepository.findAllByCryptoUser(user);
+
+        return trades.stream()
+                .map(trade -> new TradeHistoryDto(
+                        trade.getSymbol(),
+                        trade.getQuantity(),
+                        trade.getPrice(),
+                        trade.isBuyOrder(),
+                        trade.getTradeTimestamp()
+                ))
+                .collect(Collectors.toList());
     }
 
     public void trade(String username, String symbol, BigDecimal quantity, boolean isBuyOrder) {

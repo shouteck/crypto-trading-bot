@@ -2,4 +2,8 @@ package dev.shouteck.crypto_trading_bot;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TradeRepository extends JpaRepository<Trade, Long> {}
+import java.util.List;
+
+public interface TradeRepository extends JpaRepository<Trade, Long> {
+    List<Trade> findAllByCryptoUser(CryptoUser cryptoUser);
+}
