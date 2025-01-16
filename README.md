@@ -1,4 +1,4 @@
-# Crypto Trading API
+# Crypto Trading Bot API
 
 ### 1. Get Aggregated Prices
 
