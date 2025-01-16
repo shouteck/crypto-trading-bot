@@ -6,10 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -25,13 +25,14 @@ public class TradeController {
     }
 
     @PostMapping("/execute")
-    public ResponseEntity<String> trade(
-            @RequestParam String username,
-            @RequestParam String symbol,
-            @RequestParam BigDecimal quantity,
-            @RequestParam boolean isBuyOrder) {
+    public ResponseEntity<String> trade(@RequestBody TradeRequestDto tradeRequestDto) {
         try {
-            tradeService.trade(username, symbol, quantity, isBuyOrder);
+            tradeService.trade(
+                    tradeRequestDto.getUsername(),
+                    tradeRequestDto.getSymbol(),
+                    tradeRequestDto.getQuantity(),
+                    tradeRequestDto.isBuyOrder()
+            );
             return ResponseEntity.ok("Trade executed successfully.");
         } catch (InsufficientBalanceException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insufficient cash balance: " + e.getMessage());
