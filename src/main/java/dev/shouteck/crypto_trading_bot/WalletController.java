@@ -42,10 +42,10 @@ public class WalletController {
     }
 
     @PostMapping("/adjust")
-    public ResponseEntity<String>adjustWalletBalance(@RequestBody Map<String, String> request) {
+    public ResponseEntity<String>adjustWalletBalance(@RequestBody AdjustBalanceRequest request) {
         try {
-            String username = request.get("username");
-            BigDecimal amount = new BigDecimal(request.get("amount"));
+            String username = request.getUsername();
+            BigDecimal amount = request.getAmount();
 
             // Ensure the amount is valid (e.g., not negative)
             if (amount.compareTo(BigDecimal.ZERO) < 0) {

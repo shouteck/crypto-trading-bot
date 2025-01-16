@@ -8,7 +8,7 @@
 - **Request Body**:
     ```json
     {
-    "username": "john_doe"
+        "username": "john_doe"
     }
 - **Response Body**:
     ```json
@@ -42,7 +42,7 @@
     ```json
     {
         "username": "john_doe",
-        "amount": "1000000.00"
+        "amount": 1000000.00
     }
 - **Response Body**:
     ```json
