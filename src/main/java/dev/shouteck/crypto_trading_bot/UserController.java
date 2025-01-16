@@ -21,6 +21,6 @@ public class UserController {
     public String createUser(@RequestBody Map<String, String> request) {
         String username = request.get("username");
         userService.createUser(username);
-        return "User created";
+        return "User created.";
     }
 }
