@@ -5,8 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
-
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -18,7 +16,8 @@ public class UserController {
     }
 
     @PostMapping
-    public CryptoUser createUser(@RequestParam String username, @RequestParam BigDecimal walletBalance) {
-        return userService.createUser(username, walletBalance);
+    public String createUser(@RequestParam String username) {
+        userService.createUser(username);
+        return "User created";
     }
 }

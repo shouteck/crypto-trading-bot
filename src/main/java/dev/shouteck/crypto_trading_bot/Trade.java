@@ -25,10 +25,10 @@ public class Trade {
     @Column(nullable = false)
     private String symbol;
 
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 20, scale = 8)
     private BigDecimal quantity;
 
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 20, scale = 8)
     private BigDecimal price;
 
     @Column(nullable = false)

@@ -5,8 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
-import java.math.BigDecimal;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class CryptoUser {
@@ -18,14 +17,13 @@ public class CryptoUser {
     @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false)
-    private BigDecimal walletBalance;
+    @OneToOne(mappedBy = "cryptoUser")
+    private Wallet wallet;
 
     public CryptoUser() {}
 
-    public CryptoUser(String username, BigDecimal walletBalance) {
+    public CryptoUser(String username) {
         this.username = username;
-        this.walletBalance = walletBalance;
     }
 
     public Long getId() {
@@ -44,11 +42,11 @@ public class CryptoUser {
         this.username = username;
     }
 
-    public BigDecimal getWalletBalance() {
-        return walletBalance;
+    public Wallet getWallet() {
+        return wallet;
     }
 
-    public void setWalletBalance(BigDecimal walletBalance) {
-        this.walletBalance = walletBalance;
+    public void setWallet(Wallet wallet) {
+        this.wallet = wallet;
     }
 }

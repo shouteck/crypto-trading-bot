@@ -8,16 +8,27 @@ import java.math.BigDecimal;
 public class WalletService {
 
     private final UserRepository userRepository;
+    private final WalletRepository walletRepository;
 
-    public WalletService(UserRepository userRepository) {
+    public WalletService(UserRepository userRepository, WalletRepository walletRepository) {
         this.userRepository = userRepository;
+        this.walletRepository = walletRepository;
     }
 
-    public BigDecimal getWalletBalance(String username) {
+    public Wallet getWalletForUser(String username) {
         CryptoUser user = userRepository.findByUsername(username);
-        if (user == null) {
-            throw new IllegalArgumentException("User not found");
+        if (user != null && user.getWallet() != null) {
+            return user.getWallet();
         }
-        return user.getWalletBalance();
+        return null;
+    }
+
+    public void adjustCashBalance(String username, BigDecimal amount) {
+        CryptoUser user = userRepository.findByUsername(username);
+        if (user != null && user.getWallet() != null) {
+            Wallet wallet = user.getWallet();
+            wallet.setCashBalance(wallet.getCashBalance().add(amount));
+            walletRepository.save(wallet);
+        }
     }
 }

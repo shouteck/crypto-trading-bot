@@ -1,5 +1,6 @@
 package dev.shouteck.crypto_trading_bot;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -13,9 +14,13 @@ public class TickerEntity {
     @EmbeddedId
     private TickerId id;
 
+    @Column(precision = 20, scale = 8)
     private BigDecimal bidPrice;
+    @Column(precision = 20, scale = 8)
     private BigDecimal bidQuantity;
+    @Column(precision = 20, scale = 8)
     private BigDecimal askPrice;
+    @Column(precision = 20, scale = 8)
     private BigDecimal askQuantity;
 
     public TickerEntity() {}
